@@ -1,6 +1,6 @@
 // Import required packages to build up node server
 const express = require("express");
-const cors = require("cors");
+const nodeFetch = require("node-fetch");
 
 // Environment variables
 const PORT = process.env.PORT;
@@ -11,13 +11,12 @@ const app = express();
 // Configure the server appropiately
 app.use(express.urlencoded({extended: true}));
 app.use(express.json());
-app.use(cors());
 
 function makeAPIRequest(url, res)
 {
     const newsDataRes = [];
 
-    fetch(url)
+    nodeFetch.fetch(url)
         .then(response => response.json())
         .then(news => {
             const newsData = news.data;
