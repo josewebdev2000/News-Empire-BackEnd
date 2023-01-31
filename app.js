@@ -1,6 +1,9 @@
 // Import required packages to build up node server
 import express from "express";
 import fetch  from "node-fetch";
+import cors from "cors";
+
+
 
 // Environment variables
 const PORT = process.env.PORT;
@@ -11,6 +14,7 @@ const app = express();
 // Configure the server appropiately
 app.use(express.urlencoded({extended: true}));
 app.use(express.json());
+app.use(cors());
 
 function makeAPIRequest(url, res)
 {
