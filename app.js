@@ -1,6 +1,6 @@
 // Import required packages to build up node server
-const express = require("express");
-const nodeFetch = require("node-fetch");
+import express from "express";
+import fetch  from "node-fetch";
 
 // Environment variables
 const PORT = process.env.PORT;
@@ -16,7 +16,7 @@ function makeAPIRequest(url, res)
 {
     const newsDataRes = [];
 
-    nodeFetch.fetch(url)
+    fetch(url)
         .then(response => response.json())
         .then(news => {
             const newsData = news.data;
@@ -53,7 +53,6 @@ app.post("/search", (req, res) => {
     const {newsToSearch} = req.body;
 
     const urlToFetch = `https://api.thenewsapi.com/v1/news/top?api_token=${APIKEY}&language=en&exclude_domains=worldmags.net&search=${newsToSearch}`;
-
     makeAPIRequest(urlToFetch, res);
 
 });
